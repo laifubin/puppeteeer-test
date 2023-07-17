@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZXL又是美美的一天</title>
+</head>
+<body>
+    <h3>点击屏幕任意位置下载Execl</h3>
+    <script type="text/javascript">
+    
+      function download(data, filename = '测试.xlsx') {
+        // const blob = new Blob([data], { type: 'application/vnd.ms-excel' })
+        const blob = new Blob([data], { type: 'application/octet-stream' })
+        if ('download' in document.createElement('a')) {
+          const aNode = document.createElement('a')
+          const url = window.URL.createObjectURL(blob)
+          aNode.download = filename
+          aNode.style.display = 'none'
+          aNode.href = url
+          document.body.appendChild(aNode)
+          aNode.click()
+          document.body.removeChild(aNode)
+          window.URL.revokeObjectURL(url) // 释放掉blob对象
+        } else {
+          // IE 10+
+          window.navigator.msSaveBlob(blob, filename)
+        }
+      }
+      function getInfo(){
+        console.log(2324)
+          fetch('/download', { method: 'post' })
+          // .then(res => res.json())
+          .then(response => {
+            // console.log(response)
+            response.blob().then(blob => {
+
+              download(blob)
+            })
+          })
+      }
+
+      document.addEventListener('click', getInfo)
+    </script>
+</body>
+</html>
