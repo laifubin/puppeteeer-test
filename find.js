@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 
 module.exports = async () => {
-  const browser = await puppeteer.launch({headless: false});
+  const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
 
   const page = await browser.newPage();
   
@@ -16,6 +16,7 @@ module.exports = async () => {
     const els = document.querySelectorAll('.s-desktop-content .a-section>.sg-row')
     for(let i = 0; i < els.length; i++) {
       const el = els[i]
+
       
       const item = {}
       const title = el.querySelector('.s-title-instructions-style span.a-text-normal')?.innerText
