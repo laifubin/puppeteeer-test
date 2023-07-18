@@ -5,9 +5,30 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZXL又是美美的一天</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    div.download {
+      padding: 10px;
+      text-align: center;
+      width: 160px;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <h3>点击屏幕任意位置下载Execl</h3>
+    <div class="download" onclick="getInfo()">点击下载Execl</div>
     <script type="text/javascript">
     
       function download(data, filename = '测试.xlsx') {
@@ -41,7 +62,6 @@
           })
       }
 
-      document.addEventListener('click', getInfo)
     </script>
 </body>
 </html>
